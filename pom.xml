@@ -61,6 +61,68 @@
                         </dependency>
                     </dependencies>
             </plugin>
+            <plugin>
+              <groupId>com.lazerycode.jmeter</groupId>
+              <artifactId>jmeter-analysis-maven-plugin</artifactId>
+              <executions>
+                <execution>
+                  <goals>
+                    <goal>analyze</goal>
+                  </goals>
+                  <configuration>
+                    <source>${project.build.directory}/**/*.jtl</source>
+                    <targetDirectory>${project.build.directory}/results</targetDirectory>
+                    <sourceDirFailed>true</sourceDirFailed>
+                    <checkResult>
+                      <throughput>
+                        <threshold>-1</threshold>
+                        <toleranceDirection>UPPER_LOWER_TOLERANCE</tolerance>
+                        <tolerance>5</tolerance>
+                      </throughput>
+                      <errors>
+                        <threshold>-1</threshold>
+                        <toleranceDirection>UPPER_LOWER_TOLERANCE</tolerance>
+                        <tolerance>5</tolerance>
+                      </errors>
+                    </checkResult>
+                    <requestGroups>
+                      <pages>/page/**</pages>
+                      <binaries>/binary/**</binaries>
+                      <checkResult>
+                      </checkResult>
+                    </requestGroups>
+                    <requestGroups>
+                      <requestGroup>
+                        <name>pages</name>
+                        <pattern>/page/**</pattern>
+                        <checkResult>
+                        </checkResult>
+                      </requestGroup>
+                      <requestGroup>
+                        <name>binaries</name>
+                        <pattern>/binary/**</pattern>
+                        <checkResult>
+                        </checkResult>
+                      </requestGroup>
+                    </requestGroups>
+                    <generateCSVs>true</generateCSVs>
+                    <generateCharts>true</generateCharts>
+                    <configurationCharts>
+                      <width>950</width>
+                      <height>500</height>
+                    </configurationCharts>
+                    <maxSamples>50000</maxSamples>
+                    <preserveDirectories>false</preserveDirectories>
+                    <sampleNames>
+                      <sampleName>sample</sampleName>
+                      <sampleName>httpSample</sampleName>
+                    </sampleNames>
+                    <processAllFilesFound>false</processAllFilesFound>
+                    <templateDirectory>${project.basedir}/src/main/resources/</templateDirectory>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
