@@ -81,7 +81,7 @@
                       </throughput>
                       <errors>
                         <threshold>-1</threshold>
-                        <toleranceDirection>UPPER_LOWER_TOLERANCE</tolerance>
+                        <toleranceDirection>UPPER_LOWER_TOLERANCE</toleranceDirection>
                         <tolerance>5</tolerance>
                       </errors>
                     </checkResult>
